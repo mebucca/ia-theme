@@ -17,7 +17,8 @@ end
 local start_hue = math.random(0, 359)
 local slide_index = 0
 local n_slides = 11
-local title_color = hsl_to_hex(start_hue, 88, 44)
+-- Lightness capped at 35% so yellow/lime hues never look white or washed out
+local title_color = hsl_to_hex(start_hue, 90, 32)
 
 function Pandoc(doc)
   local js = string.format(
@@ -34,8 +35,9 @@ end
 function Header(el)
   if el.level == 2 then
     local hue = (start_hue + (slide_index / n_slides) * 300) % 360
-    local sat = slide_index % 2 == 0 and 88 or 72
-    local lit = slide_index % 2 == 0 and 44 or 36
+    -- Keep saturation high, lightness max 35% — safe for all hues including yellow
+    local sat = 90
+    local lit = 28 + (slide_index % 3) * 4  -- cycles between 28, 32, 36
     local color = hsl_to_hex(hue, sat, lit)
     el.attributes["background-color"] = color
     slide_index = slide_index + 1
