@@ -1,0 +1,45 @@
+---
+title: "Your Title"
+subtitle: "Your subtitle"
+author: "Name · Institution"
+date: today
+
+format:
+  ia-theme-revealjs: default
+---
+
+## First slide
+
+<div class="headline">Your headline<br>goes here</div>
+
+::: {.notes}
+Speaker notes go here.
+:::
+
+## Slide with body text
+
+<div class="slide-content">
+<div class="headline">Headline<br>with body</div>
+<div class="body">
+Supporting text goes here. Keep it short — one or two sentences max.
+</div>
+</div>
+
+## Split slide with image {.split-slide}
+
+::: {.split-text}
+Headline<br>on the left
+:::
+
+::: {.split-image}
+![](your-photo.jpg)
+:::
+
+## Closing {.closing-slide}
+
+<div class="closing-content">
+<div class="closing-title">Your Title</div>
+<div class="closing-sub">Your subtitle</div>
+<div class="closing-rule"></div>
+<div class="closing-author">Name · Institution</div>
+</div>
