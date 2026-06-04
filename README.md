@@ -1,6 +1,6 @@
 # ia-theme
 
-An iA Presenter-style Quarto Reveal.js theme. Full-bleed solid colors, bold headlines pinned bottom-left, and a random color palette generated fresh on every render.
+An iA Presenter-style Quarto Reveal.js theme. Full-bleed solid colors, bold headlines pinned bottom-left, and a unique random color palette baked in on every render.
 
 ## Install
 
@@ -21,6 +21,8 @@ format:
   ia-theme-revealjs: default
 ---
 ```
+
+That's it. No other configuration needed.
 
 ## Slide layouts
 
@@ -70,4 +72,12 @@ Headline<br>on the left
 
 ## Color palette
 
-A random hue is chosen at render time and stepped ~300° around the color wheel across slides. Re-render to get a new palette.
+On every render, a random starting hue is chosen and distributed evenly across all slides (title + content + closing) covering the full 360° color wheel. Each render produces a completely different palette. All backgrounds are dark — no slide ever has a white or light background. Title and closing slides use black text; content slides use white.
+
+## Line breaks in headlines
+
+Use `<br>` inside `.headline` or `.split-text` divs to control where lines break:
+
+```html
+<div class="headline">Good design<br>is innovative</div>
+```
