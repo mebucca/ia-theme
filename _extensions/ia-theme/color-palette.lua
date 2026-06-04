@@ -1,6 +1,3 @@
--- Assigns a random-hue color progression to every level-2 slide header at render time.
--- Also injects a <style> block to color the auto-generated Quarto title slide.
-
 math.randomseed(os.time())
 
 local function hsl_to_hex(h, s, l)
@@ -19,19 +16,18 @@ end
 
 local start_hue = math.random(0, 359)
 local slide_index = 0
-local n_slides = 11  -- total content slides (excluding title)
-
--- Title slide gets the start hue (same anchor as slide 0)
+local n_slides = 11
 local title_color = hsl_to_hex(start_hue, 88, 44)
 
 function Pandoc(doc)
-  -- Inject a <style> that hard-codes the title slide background for this render
-  local style = string.format(
-    "<style>#title-slide { background-color: %s !important; }</style>",
+  local js = string.format(
+    '<script>window.addEventListener("load",function(){' ..
+    'var b=document.querySelector(".reveal .slides>.slide-background:first-child");' ..
+    'if(b)b.style.backgroundColor="%s";' ..
+    '});</script>',
     title_color
   )
-  local raw = pandoc.RawBlock("html", style)
-  table.insert(doc.blocks, 1, raw)
+  table.insert(doc.blocks, pandoc.RawBlock("html", js))
   return doc
 end
 
